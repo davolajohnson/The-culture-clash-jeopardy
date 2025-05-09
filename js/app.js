@@ -71,28 +71,19 @@ function closeModal() {
 
 // Check the player's answer and update the score
 function checkAnswer() {
-    const playerAnswer = answerInput.value.trim().toLowerCase();
-    const correctAnswer = currentButton.dataset.answer.toLowerCase();
+    const input = document.getElementById('answer-input').value.trim().toLowerCase();
+    const correctAnswer = currentButton.dataset.answer.trim().toLowerCase();
 
-    if (playerAnswer === correctAnswer) {
-        // Correct answer: add points
+    if (input === correctAnswer) {
         score += parseInt(currentButton.textContent.replace('$', ''), 10);
-        feedbackMessage.textContent = "Correct!";
-        feedbackMessage.style.color = "green";
+        document.getElementById('feedback-message').textContent = "Correct!";
     } else {
-        // Incorrect answer: deduct points
         score -= parseInt(currentButton.textContent.replace('$', ''), 10);
-        feedbackMessage.textContent = "Incorrect!";
-        feedbackMessage.style.color = "red";
-
-        setTimeout(() => {
-            closeModal();
-        }, 1500);
-        
+        document.getElementById('feedback-message').textContent = "Incorrect!";
     }
 
     updateScore();
-    closeModal();
+    setTimeout(closeModal, 1500);
 }
 
 // Update the score display
