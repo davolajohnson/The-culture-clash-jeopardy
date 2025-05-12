@@ -1,230 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Culture Clash Jeopardy</title>
   <link rel="stylesheet" href="./css/style.css" />
   <script defer src="./js/app.js"></script>
-     
 
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        background-color: #1212ef;
-        margin: 0;
-        padding: 0;
-    }
-    header {
-        background-color: #0f0e0e;
-        color: white;
-        padding: 20px 0;
-        margin-bottom: 20px;
-    }
-    #game-board {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 10px;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .category {
-        background-color: #060605;
-        color: white;
-        font-weight: bolder;
-        padding: 25px;
-        text-transform: uppercase;
-        border-radius: 5px;
-    }
-    .question {
-        background-color: #0fa119;
-        color: white;
-        padding: 40px;
-        border: none;
-        font-size: 1.5em;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: transform 0.2s, background-color 0.3s;
-    }
-    .question:hover {
-        background-color: #008c3f;
-        transform: scale(1.05);
-    }
-    .question.answered {
-        background-color: #cccccc;
-        color: #666666;
-        cursor: default;
-    }
-    #question-modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgb(255, 255, 255);
-        border: 2px solid #4a4a8a;
-        padding: 20px;
-        width: 300px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        border-radius: 10px;
-    }
-    #overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-    }
-    .close-btn {
-        background-color: #4a4a8a;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        font-size: 1em;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    }
-    .close-btn:hover {
-        background-color: #37376c;
-    }
-    </style>
 </head>
 <body>
   <header>
+
     <h1>The-Culture-Clash-Jeopardy</h1>
   </header>
 
-  <div id="game-board">
-    <!-- Categories -->
+  <img src="https://eurweb.com/wp-content/uploads/2024/07/The-Black-Press-via-EURai.jpg" 
+     alt="The Black Press" 
+     style="max-width: 300px; margin: 20px auto; display: block;">
+
+  <main id="game-board">
+
     <div class="category">History</div>
     <div class="category">Sports</div>
     <div class="category">Music</div>
     <div class="category">Science</div>
     <div class="category">Culture</div>
 
-    <!-- Questions -->
+    
     <button class="question" data-category="History" data-question="This leader famously delivered the 'I Have a Dream' speech at the March on Washington." data-answer="Who was Martin Luther King Jr.">$200</button>
     <button class="question" data-category="Sports" data-question="The first female athlete to have an athletic shoe named after her?" data-answer="Who is Sheryl Swoopes">$200</button> 
     <button class="question" data-category="Music" data-question="What genre of music is Louis Armstrong associated with?" data-answer="What is Jazz">$200</button>
-    <button class="question" data-category="Science" data-question="Who was the first African American Supreme Court Justice?" data-answer="Thurgood Marshall">$200</button>
-    <button class="question" data-category="Culture" data-question="Who was the first African American Supreme Court Justice?" data-answer="Thurgood Marshall">$200</button>
+    <button class="question" data-category="Science" data-question="Who was the first African American woman in space?" data-answer="Who is Dr. Mae Jemison">$200</button>
+    <button class="question" data-category="Culture" data-question="What show centers on the lives of the Huxtables?" data-answer="What is The Cosby Show">$200</button>
 
-    <button class="question" data-category="History"data-question="This Supreme Court Justice made history as the first African American woman to serve on the court?" data-answer="Who is Ketanji Brown Jackson">$400</button>
-    <button class="question" data-category="Sports" data-question="The first black male to win a NCAA tennis Championship, the first to win a Grand Slam Title,?" data-answer="Who is Arthur Ashe">$400</button> 
-    <button class="question" data-category="Music"data-question="This song, released in 1982, became the best-selling album of all time?" data-answer="What was 'Thriller'>$400</button>
-    <button class="question" data-category="Science"data-question="What genre of music is Louis Armstrong associated with?" data-answer="Jazz">$400</button>
-    <button class="question" data-category="Culture"data-question="Who was the first African American woman in space?" data-answer="Dr. Mae Jemison">$400</button>
+    <button class="question" data-category="History" data-question="This Supreme Court Justice made history as the first African American woman to serve on the court?" data-answer="Who is Ketanji Brown Jackson">$400</button>
+    <button class="question" data-category="Sports" data-question="The first black male to win a NCAA tennis Championship, the first to win a Grand Slam Title,?" data-answer="Who was Arthur Ashe">$400</button> 
+    <button class="question" data-category="Music" data-question="This song, released in 1982, became the best-selling album of all time?" data-answer="What is Thriller">$400</button>
+    <button class="question" data-category="Science" data-question="A botanist, inventor, and educator known for his work with peanuts?" data-answer="Who was George Washington Carver">$400</button>
+    <button class="question" data-category="Culture" data-question="This person was the 44th president of the United States from 2009 to 2017" data-answer="Who is Barack Obama">$400</button>
    
-    <button class="question" data-category="History" data-question="This organization, founded in 1966, advocated for Black self-determination and community control, challenging systemic racism and police brutality?" data-answer="What is the Black Panther Party">$600</button>
-    <button class="question" data-category="Sports" data-question="Known as was the fastest woman alive?" data-answer="Who is Florence Griffith Joyner Flo Jo>$600</button>
-    <button class="question" data-category="Music" data-question="What is a subgenre of hip hop, contemporary R&B, soul, and new jack swing.?" data-answer='What is Hip Hop Soul'>$600</button>
-    <button class="question" data-category="Science" data-question="was twas an American mathematician whose calculations of orbital mechanics as a NASA employee were critical to the success of the first and subsequent U.S. crewed spaceflights.?" data-answer="Who is Katherine Johnson">$600</button>
-    <button class="question" data-category="Culture" data-question="What show centers on the lives of the Huxtables? data-answer="The Cosby Show>$600</button>
+    <button class="question" data-category="History" data-question="This organization, founded in 1966, advocated for Black self-determination and community control, challenging systemic racism and police brutality?" data-answer="What was the Black Panther Party">$600</button>
+    <button class="question" data-category="Sports" data-question="She was known as the fastest woman alive?" data-answer="Who was Florence 'Flo Jo' Griffith Joyner">$600</button>
+    <button class="question" data-category="Music" data-question="This music genre emerged in the 1980s, blending hip-hop with other musical styles." data-answer="What is new jack swing">$600</button>
+    <button class="question" data-category="Science" data-question="The Female African American mathematician who made crucial calculations for NASA's space missions, including the Apollo 11 launch?" data-answer="Who is Katherine Johnson">$600</button>
+    <button class="question" data-category="Culture" data-question="This event is a celebration of African American culture and history." data-answer="What is Juneteenth" >$600</button>
 
-    <button class="question" data-category="History"data-question="What turned 50 years old on August 11, 2023?" data-answer="Hip-Hop">$800</button>
-    <button class="question" data-category="Sports" data-question="His Airness,” is considered one of the greatest basketball players to ever grace the NBA court?" data-answer="Who is Michael Jordan">$800</button>
-    <button class="question" data-category="Music"data-question="What is a subgenre of hip hop, contemporary R&B, soul, and new jack swing.?" data-answer="Hip Hop Soul">$800</button>
-    <button class="question" data-category="Science" data-question="Who was twas an American mathematician whose calculations of orbital mechanics as a NASA employee were critical to the success of the first and subsequent U.S. crewed spaceflights.?" data-answer="Katherine Johnson">$800</button>
-    <button class="question" data-category="Culture" data-question="What show centers on the lives of the Huxtables?" data-answer="The Cosby Show">$800</button>
+    <button class="question" data-category="History" data-question="What turned 50 years old on August 11, 2023?" data-answer="What is Hip-Hop">$800</button>
+    <button class="question" data-category="Sports" data-question="Which brand did Michael Jordan famously sign with after Adidas passed on offering him a shoe deal?" data-answer="What is NIKE">$800</button>
+    <button class="question" data-category="Music" data-question="This music genre emerged in the 1990s, known for its raw lyrics and aggressive beats." data-answer="What is gangsta rap">$800</button>
+    <button class="question" data-category="Science" data-question="An inventor credited with the invention of the traffic signal and a gas mask?" data-answer="Who was Garrett Morgan">$800</button>
+    <button class="question" data-category="Culture" data-question="What show was a spin-off of The Cosby Show and centered around college life?" data-answer="What is A Different World">$800</button>
 
-    <button class="question" data-category="History"data-question="Who was the first African American Supreme Court Justice?" data-answer="Hip-Hop">$1000</button>
-    <button class="question" data-category="Sports" data-question="A tennis icon, known for winning numerous Grand Slam titles and her influence on the sport? " data-answer="Who is Serena Williams">$1000</button>
-    <button class="question" data-category="Music"data-question="What is a subgenre of hip hop, contemporary R&B, soul, and new jack swing.?" data-answer="Hip Hop Soul">$1000</button>
-    <button class="question" data-category="Science" data-question="Who was twas an American mathematician whose calculations of orbital mechanics as a NASA employee were critical to the success of the first and subsequent U.S. crewed spaceflights.?" data-answer="Katherine Johnson">$1000</button>
-    <button class="question" data-category="Culture" data-question="What show centers on the lives of the Huxtables?" data-answer="The Cosby Show">$1000</button>
-
-</div>
+    <button class="question" data-category="History" data-question="Who was the first African American woman to win the Nobel Prize for Literature?" data-answer="Who was Toni Morrison">$1000</button>
+    <button class="question" data-category="Sports" data-question="A tennis icon, known for winning numerous Grand Slam titles and her influence on the sport?" data-answer="Who is Serena Williams">$1000</button>
+    <button class="question" data-category="Music" data-question="This artist currently holds the record for most Grammy Awards " data-answer="Who is Beyonce">$1000</button>
+    <button class="question" data-category="Science" data-question="A mathematician who contributed to the development of the Global Positioning System (GPS)?" data-answer="Who is Gladys West">$1000</button>
+    <button class="question" data-category="Culture" data-question="This abolitionist and journalist founded the newspaper (The North Star)?" data-answer="Who was Frederick Douglass">$1000</button>
+  </main>
 
 
 <div id="overlay"></div>
    
-<div id="score">
-    Score: <span id="score-display">0</span>
-</div>
-
-<div id="timer">
-    Time Remaining: <span id="timer-display">20</span> seconds
-</div>
-
-<div> 
+<section id="game-info">
+    <div id="score-container">Score: <span id="score-display">0</span></div>
+    <div id="timer">Time Remaining: <span id="timer-display">20</span> seconds</div>
     <button id="reset-btn" class="close-btn">Reset Game</button>
-</div>
-
+  </section>
+  
 <div id="question-modal">
     <p id="question-text"></p>
     <input type="text" id="answer-input" placeholder="Type your answer here">
     <button class="close-btn" onclick="checkAnswer()">Submit Answer</button>
-      <button class="close-btn" onclick="closeModal()">Close</button>
-    <p id="feedback-message"></p> <!-- Space for feedback -->
+    <button class="close-btn" onclick="closeModal()">Close</button>
+    <p id="feedback-message"></p> 
 </div>
-
-
-<script>
-    const questions = document.querySelectorAll('.question');
-    const questionModal = document.getElementById('question-modal');
-    const overlay = document.getElementById('overlay');
-    const questionText = document.getElementById('question-text');
-    const scoreDisplay = document.getElementById('score-display');
-    const timerDisplay = document.getElementById('timer-display');
-
-    let score = 0;
-    let timer;
-    let timeRemaining = 20;
-
-    questions.forEach(button => {
-        button.addEventListener('click', function () {
-            if (!button.classList.contains('answered')) {
-                questionText.textContent = this.dataset.question;
-                questionModal.style.display = 'block';
-                overlay.style.display = 'block';
-                this.classList.add('answered');
-
-                startTimer(button);
-            }
-        });
-    });
-
-    function startTimer(button) {
-        timeRemaining = 20; // Reset timer
-        timerDisplay.textContent = timeRemaining;
-
-        timer = setInterval(() => {
-            timeRemaining--;
-            timerDisplay.textContent = timeRemaining;
-
-            if (timeRemaining <= 0) {
-                clearInterval(timer);
-                handleTimeout(button);
-            }
-        }, 1000);
-    }
-
-    function handleTimeout(button) {
-        // Close modal and deduct points if time runs out
-        closeModal();
-        score -= parseInt(button.textContent.replace('$', ''), 10);
-        updateScore();
-    }
-
-    function closeModal() {
-        questionModal.style.display = 'none';
-        overlay.style.display = 'none';
-        clearInterval(timer);
-    }
-
-    function updateScore() {
-        scoreDisplay.textContent = score;
-
-    }
-</script>
-
 </body>
 </html>
+
+    
