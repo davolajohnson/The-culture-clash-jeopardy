@@ -8,6 +8,7 @@ let timeRemaining = 20;
 let currentButton = null;
 let questionsAnswered = 0;
 let isTimeUp = false;
+let isModalOpen = false;
 
 const modal = document.getElementById('question-modal');
 const overlay = document.getElementById('overlay');
@@ -17,6 +18,7 @@ const scoreDisplay = document.getElementById('score-display');
 const timerDisplay = document.getElementById('timer-display');
 const feedbackMessage = document.getElementById('feedback-message');
 const resetButton = document.getElementById('reset-btn');
+const gameStatusMessage = document.getElementById('game-status-message');
 
 function normalize(str) {
     return str.trim().toLowerCase();
@@ -44,6 +46,7 @@ function handleTimeout(button) {
     score -= value;
     updateScore();
     questionsAnswered++;
+    button.classList.add('answered');
     checkGameStatus();
     closeModal();
 }
@@ -52,6 +55,8 @@ function closeModal() {
     modal.style.display = 'none';
     overlay.style.display = 'none';
     clearInterval(timer);
+    currentButton = null;
+    isModalOpen = false;
 }
 
 function checkAnswer() {
@@ -61,23 +66,27 @@ function checkAnswer() {
     const correctAnswer = normalize(currentButton.dataset.answer);
     const value = parseInt(currentButton.textContent.replace('$', ''), 10) || 0;
 
+    if (input === "") {
+        feedbackMessage.textContent = "Please enter an answer.";
+        feedbackMessage.style.color = "orange";
+        return;
+    }
     if (input === correctAnswer) {
-        score += parseInt(currentButton.textContent.replace('$', ''), 10);
+        score += value;
         feedbackMessage.textContent = "Correct!";
         feedbackMessage.style.color = "green";
     } else {
-        score -= parseInt(currentButton.textContent.replace('$', ''), 10);
+        score -= value;
         feedbackMessage.textContent = "Incorrect!";
         feedbackMessage.style.color = "red";
     }
 
     updateScore();
     questionsAnswered++;
+    currentButton.classList.add('answered'); 
     checkGameStatus();
     setTimeout(closeModal, 1500);
 }
-
-
 
 function updateScore() {
     scoreDisplay.textContent = score;
@@ -85,13 +94,15 @@ function updateScore() {
 
 function checkGameStatus() {
     if (score >= WIN_SCORE) {
-        alert("🎉 You win!");
-        endGame();
+      gameStatusMessage.textContent = "🎉 You win!";
+      gameStatusMessage.style.color = "green";
+      endGame();
     } else if (score < 0 || questionsAnswered === TOTAL_QUESTIONS) {
-        alert("💥 Game over. Better luck next time!");
-        endGame();
+      gameStatusMessage.textContent = "❌ Game over. Better luck next time!";
+      gameStatusMessage.style.color = "red";
+      endGame();
     }
-}
+  }
 
 function endGame() {
     questions.forEach(button => {
@@ -110,6 +121,8 @@ function resetGame() {
     timerDisplay.textContent = 20;
     feedbackMessage.textContent = '';
     answerInput.value = '';
+    gameStatusMessage.textContent = '';
+    gameStatusMessage.style.color = '';
 
     questions.forEach(button => {
         button.disabled = false;
@@ -120,7 +133,7 @@ function resetGame() {
 
 questions.forEach(button => {
     button.addEventListener('click', function () {
-        if (modal.style.display === 'block' || button.classList.contains('answered')) return;
+        if (isModalOpen || button.classList.contains('answered')) return;
 
             questionText.textContent = this.dataset.question;
             modal.style.display = 'block';
@@ -129,7 +142,8 @@ questions.forEach(button => {
             feedbackMessage.textContent = '';
             feedbackMessage.style.color = '';
             currentButton = button;
-            this.classList.add('answered');
+            isModalOpen = true;
+
             startTimer(button);
         });
     });
