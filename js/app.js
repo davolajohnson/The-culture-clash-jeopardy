@@ -1,4 +1,5 @@
-const WIN_SCORE = 2000;
+const WIN_SCORE = 3000;
+const LOSS_SCORE = -2000;
 const questions = document.querySelectorAll('.question');
 const TOTAL_QUESTIONS = questions.length;
 
@@ -97,7 +98,7 @@ function checkGameStatus() {
       gameStatusMessage.textContent = "🎉 You win!";
       gameStatusMessage.style.color = "green";
       endGame();
-    } else if (score < 0 || questionsAnswered === TOTAL_QUESTIONS) {
+    } else if (score <= LOSS_SCORE || questionsAnswered === TOTAL_QUESTIONS) {
       gameStatusMessage.textContent = "❌ Game over. Better luck next time!";
       gameStatusMessage.style.color = "red";
       endGame();
