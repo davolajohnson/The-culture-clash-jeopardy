@@ -68,6 +68,7 @@ Jeopardy is a quiz show that features a unique answer-and-question format where 
 -  2-player mode
 -  Competition mode
 -  Improved UI/UX design
+-  Show the correct answer when the wrong answer is given
 
 ---
 
